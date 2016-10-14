@@ -19,7 +19,7 @@ Download and install as you would any other WordPress theme.
 ### Features
 
 1. Normalized stylesheet for cross-browser compatibility using Normalize.css version 3 (IE8+)
-2. Responsive images using Picturefill version version 1.2
+2. Responsive images using Picturefill version 1.2
 3. Easy to customize 
 4. Accessibiliy #a11y
 5. Much much more
