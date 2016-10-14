@@ -4,7 +4,7 @@ Version: 1.2
 
 ## Author:
 
-Matt Banks ( [@pixelasticity](http://twitter.com/pixelasticity) / [alexanderbell.info](https://alexanderbell.info) )
+Alexander Bell ( [@pixelasticity](http://twitter.com/pixelasticity) / [alexanderbell.info](https://alexanderbell.info) )
 
 ## Summary
 
