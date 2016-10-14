@@ -1,6 +1,7 @@
 # Fossils
 
 A WordPress theme designed for the Dinosauria Network. Inspired by fossils and the early days of the web, but built with modern code.
+
 Version: 1.2
 
 ## Author:
