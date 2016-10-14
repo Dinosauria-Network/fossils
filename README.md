@@ -10,7 +10,7 @@ Alexander Bell ( [@pixelasticity](http://twitter.com/pixelasticity) / [alexander
 
 ## Summary
 
-WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr and Normalize.css. Tested up to WordPress 4.0 RC1.
+WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr, Picturefill and Normalize.css. Tested up to WordPress 4.0 RC1.
 
 ## Usage
 
@@ -19,9 +19,10 @@ Download and install as you would any other WordPress theme.
 ### Features
 
 1. Normalized stylesheet for cross-browser compatibility using Normalize.css version 3 (IE8+)
-2. Easy to customize 
-6. Accessibiliy #a11y
-7. Much much more
+2. Responsive images using Picturefill version version 1.2
+3. Easy to customize 
+4. Accessibiliy #a11y
+5. Much much more
 
 ### Suggested Plugins
 
@@ -47,4 +48,5 @@ Without these projects, this WordPress Starter Theme wouldn't be where it is tod
 
 * [HTML5 Boilerplate](http://html5boilerplate.com)
 * [Normalize.css](http://necolas.github.com/normalize.css)
+* [Picturefill](https://github.com/scottjehl/picturefill/blob/1.2)
 * [Underscores Theme](https://github.com/Automattic/_s)
