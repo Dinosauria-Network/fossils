@@ -30,7 +30,7 @@
 				</p><!-- .site-info -->
 
 				<p class="copyright">
-					<?php the_date( 'Y', '© <time datetime="2010-02-08">2010</time>-' ); ?> <?php bloginfo('name'); ?>
+					<?php the_date( 'Y', '&copy; <time datetime="2010-02-08">2010</time>&ndash;' ); ?> <?php bloginfo('name'); ?>
 				</p><!-- .copyright -->
 
     			<a id="going-up" title="<?php _e( 'back to top' ) ?>" href="#masthead"><?php _e( 'Top' ) ?></a>
