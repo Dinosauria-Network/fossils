@@ -19,9 +19,9 @@
 
 				<div class="feeds">
 					<span class="sep">Follow us:</span>
-					<a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS'); ?>"><?php _e('<abbr title="Really Simple Syndication">RSS</abbr>'); ?></a>
+					<a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS', 'firstresponse'); ?>"><?php _e('<abbr title="Really Simple Syndication">RSS</abbr>', 'firstresponse'); ?></a>
 					<span class="sep">|</span> 
-					<a href="<?php bloginfo('atom_url'); ?>" title="<?php _e('Syndicate this site using Atom'); ?>"><?php _e('Atom'); ?></a>
+					<a href="<?php bloginfo('atom_url'); ?>" title="<?php _e('Syndicate this site using Atom', 'firstresponse'); ?>"><?php _e('Atom', 'firstresponse'); ?></a>
 				</div>
 
 				<p class="site-info">
@@ -33,7 +33,7 @@
 					<?php the_date( 'Y', '&copy; <time datetime="2010-02-08">2010</time>&ndash;' ); ?> <?php bloginfo('name'); ?>
 				</p><!-- .copyright -->
 
-    			<a id="going-up" title="<?php _e( 'back to top' ) ?>" href="#masthead"><?php _e( 'Top' ) ?></a>
+    			<a id="going-up" title="<?php _e( 'back to top', 'firstresponse' ) ?>" href="#masthead"><?php _e( 'Top', 'firstresponse' ) ?></a>
 
 			</footer><!-- #footer .site-footer -->
 		</div><!-- #inner-wrap -->
