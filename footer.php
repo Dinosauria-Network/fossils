@@ -26,7 +26,7 @@
 
 				<p class="site-info">
 					<?php do_action( 'firstresponse_credits' ); ?>
-					<?php printf( __( 'Design by %1$s.', 'firstresponse' ), '<a href="http://pixelasticity.com/" rel="designer">A. Bell</a>' ); ?>
+					<?php printf( __( 'Design by %1$s.', 'firstresponse' ), '<a href="' . wp_get_theme()->get('ThemeURI') . '" rel="designer">A. Bell</a>' ); ?>
 				</p><!-- .site-info -->
 
 				<p class="copyright">
