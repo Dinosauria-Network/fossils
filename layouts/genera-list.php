@@ -22,48 +22,52 @@ get_header(); ?>
                 </div> 
             <div id="listing">
             <ul>
-<?php $loop = new WP_Query( array( 'post_type' => 'genus', 'posts_per_page' => 1000 ) ); ?>
+<?php $genera = new WP_Query( array(
+    'post_status'  => 'publish',
+    'post_type'    => array( 'genus' ),
+    'has_password' => false,
+    'meta_key'     => 'description-date',
+    'orderby'      => 'meta_value title',
+    'order'        => 'ASC',
+    'nopaging'     => true
+) );
 
-<?php while ( $loop->have_posts() ) : $loop->the_post(); 
-$posts = get_posts(array(
-	'meta_key' => 'description-date',
-	'orderby' => 'meta_value_num',
-	'order' => 'ASC'
-));
-get_template_part( 'content', 'page' );
-if( $posts )
-{
-	foreach( $posts as $post )
-	{
-		setup_postdata( $post );
-		// ...
+if ( $genera->have_posts() ) {
+	while ( $genera->have_posts() ) {
+        foreach ( $genera->posts as $post ) {
+            $field = get_post_meta( $post->ID, 'period', true );
+            $author = get_post_meta( $post->ID, 'author', true );
+            $date = get_post_meta( $post->ID, 'description-date', true );
+            if ($date) {
+                $dateReal = ( new DateTime("now") > new DateTime( $date ) ) ? new DateTime( $date ) : DateTime::createFromFormat( 'Y', $date );
+            } ?>
+                            <li class="clearfix">	
+                                <div class="species-name">
+                                    <?php the_title( '<h3><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h3>' ); ?>
+                                    <div class="era <?php echo $field; ?>"></div>
+
+                                    <p><?php echo ucwords( $field ); ?></p>
+                                </div>
+                                <div class="species-date">
+                                    <?php if (!empty($dateReal)) : ?>
+                                    <h4>
+                                        <time datetime="<?php echo $dateReal->format(DateTimeInterface::ISO8601); ?>"><?php echo $dateReal->format('Y'); ?></time>
+                                    </h4>
+                                    <?php endif; ?>
+                                    <?php if (!empty($author)) : ?>
+                                    <h5>by <?php echo $author; ?></h5>
+                                    <?php endif; ?>
+                                </div>
+                            </li>
+<?php // end of the loop.
+        }
 	}
-	wp_reset_postdata();
-} ?>
+}
+wp_reset_postdata(); ?>
 
-	<li class="clearfix">	
-	    <div class="species-name">
-		<?php the_title( '<h3><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h3>' ); ?>
-		<div class="era <?php echo get_post_meta($post->ID, 'period', true); ?>"></div>
-		<?php $field = get_field_object('period'); $value = get_field('period'); $label = $field['choices'][ $value ]; ?>
-
-		<p><?php echo $label; ?></p>
-	    </div>
-	    <div class="species-date">
-	    <?php $date = DateTime::createFromFormat('Ymd', get_field('description-date')); if(!empty($date)) : ?>
-		<h4>
-		    <time datetime="<?php echo $date->format('Y-m-d'); ?>"><?php echo $date->format('Y'); ?></time>
-		</h4>
-	    <?php endif; ?>
-		<h5>by <?php echo get_field('author'); ?></h5>
-	    </div>
-	</li>
-
-                <?php endwhile; // end of the loop. ?>
-                </ul>
+                        </ul>
+                    </div>
                 </div>
-                
-</div>
             </div><!-- #content .site-content -->
         </section><!-- #primary .content-area -->
 
