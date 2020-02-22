@@ -1343,6 +1343,16 @@ ul {
 
 -------------------------------------------------------------- */
 
+html {
+	scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 1600px) {
+	.page-template-genera-list #content {
+		margin: 0;
+	}
+}
+
 .one-col .entry-content {
 	padding: 0;
 }
@@ -1362,15 +1372,24 @@ ul {
 #container {
 	width: 100%;
 	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
 	cursor: pointer;
 	line-height: 1;
 }
 
 #top {
+	height: calc(100vh - 12px - 115px);
+	width: calc(82vw - 25px);
+	display: table;
 	background: #120f0d url("../img/freeflyer.jpg") no-repeat scroll center bottom;
 	background-size: cover;
 	position: relative;
 	border: 6px inset #e7e6e3;
+	border-top-color: #c9c8c5;
+	border-right-color: #f2f1ed;
+	border-bottom-color: #f5f4f0;
+	border-left-color: #cccbc8;
 	text-align: center;
 	overflow: hidden;
 }
@@ -1441,6 +1460,7 @@ ul {
 }
 
 .era {
+	position: relative;
 	width: 21px;
 	height: 21px;
 	background-size: 21px 63px;
@@ -1459,6 +1479,72 @@ ul {
 
 .triassic {
 	background: url("./img/eras.jpg") no-repeat -42px 0px;
+}
+
+.cretaceous::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	width: 50%;
+	height: 42.5%;
+}
+
+.late.cretaceous::after {
+	background: rgb(166,212,104);
+	background: linear-gradient(180deg, rgb(166, 212, 104) 0%, rgb(166, 212, 104) 43%, rgba(128,128,128,0.67) 44%, rgba(128, 128, 128, 0.67) 100%);
+}
+
+.early.cretaceous::after {
+	background: rgb(126,205,116);
+	background: linear-gradient(180deg, rgba(128, 128, 128, 0.67) 0%, rgba(128, 128, 128, 0.67) 43%, rgb(126,205,116) 44%, rgb(126, 205, 116) 100%);
+}
+
+.jurassic::after {
+	content: '';
+	position: absolute;
+	width: 50%;
+	height: 30.28571%;
+	left: 50%;
+	top: 42.5%;
+}
+
+.late.jurassic::after {
+	background: rgb(151, 227, 250);
+	background: linear-gradient(180deg, rgb(151, 227, 250) 0%, rgb(151, 227, 250) 32%, rgba(128,128,128,0.67) 33%, rgba(128, 128, 128, 0.67) 100%);
+}
+
+.middle.jurassic::after {
+	background: rgb(52, 209, 235);
+	background: linear-gradient(180deg, rgba(128, 128, 128, 0.67) 0%, rgba(128, 128, 128, 0.67) 32%, rgb(52, 209, 235) 33%, rgb(52, 209, 235) 50%, rgba(128, 128, 128, 0.67) 51%, rgba(128, 128, 128, 0.67) 100%);
+}
+
+.early.jurassic::after {
+	background: rgb(0, 183, 234);
+	background: linear-gradient(180deg, rgba(128, 128, 128, 0.67) 0%, rgba(128, 128, 128, 0.67) 51%, rgb(0, 183, 234) 52%, rgb(0, 183, 234) 100%);
+}
+
+.triassic::after {
+	content: '';
+	height: 27.2168%;
+	width: 50%;
+	position: absolute;
+	left: 50%;
+	top: 72.7832%;
+}
+
+.late.triassic::after {
+	background: rgb(198, 152, 194);
+	background: linear-gradient(180deg, rgb(198, 152, 194) 0%, rgb(198, 152, 194) 70.275%, rgba(128,128,128,0.67) 70.825%, rgba(128, 128, 128, 0.67) 100%);
+}
+
+.middle.triassic::after {
+	background: rgb(191, 124, 177);
+	background: linear-gradient(180deg, rgba(128, 128, 128, 0.67) 0%, rgba(128, 128, 128, 0.67) 70.825%, rgb(191, 124, 177) 70.825%, rgb(191, 124, 177) 99.90708%, rgba(128, 128, 128, 0.67) 99.90708%, rgba(128, 128, 128, 0.67) 100%);
+}
+
+.early.triassic::after {
+	background: rgb(173, 87, 154);
+	background: linear-gradient(180deg, rgba(128, 128, 128, 0.67) 0%, rgba(128, 128, 128, 0.67) 99.90708%, rgb(173, 87, 154) 52%, rgb(173, 87, 154) 100%);
 }
 
 .species-name p {
