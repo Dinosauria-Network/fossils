@@ -10,7 +10,7 @@ Alexander Bell ( [@pixelasticity](http://twitter.com/pixelasticity) / [alexander
 
 ## Summary
 
-WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr, Picturefill and Normalize.css. Tested up to WordPress 4.0 RC1.
+WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr, Picturefill and Normalize.css. Tested up to WordPress 5.3.2 RC1.
 
 ## Usage
 
