@@ -22,48 +22,62 @@ get_header(); ?>
                 </div> 
             <div id="listing">
             <ul>
-<?php $genera = new WP_Query( array(
-    'post_status'  => 'publish',
-    'post_type'    => array( 'genus' ),
-    'has_password' => false,
-    'meta_key'     => 'description-date',
-    'orderby'      => 'meta_value title',
-    'order'        => 'ASC',
-    'nopaging'     => true
-) );
+<?php $cache_key = 'genera-query';
+if ( ! $html = get_transient( $cache_key ) ) {
+	$genera = new WP_Query( array(
+		'post_status'  => 'publish',
+		'post_type'    => array( 'genus' ),
+		'has_password' => false,
+		'meta_key'     => 'genus_authority__date',
+		'orderby'      => 'meta_value title',
+		'order'        => 'DESC',
+		'nopaging'     => true
+	) );
+	
+	ob_start();
 
 if ( $genera->have_posts() ) {
-	while ( $genera->have_posts() ) {
-        foreach ( $genera->posts as $post ) {
-            $field = get_post_meta( $post->ID, 'period', true );
-            $author = get_post_meta( $post->ID, 'author', true );
-            $date = get_post_meta( $post->ID, 'description-date', true );
-            if ($date) {
-                $dateReal = ( new DateTime("now") > new DateTime( $date ) ) ? new DateTime( $date ) : DateTime::createFromFormat( 'Y', $date );
-            } ?>
-                            <li class="clearfix">	
-                                <div class="species-name">
-                                    <?php the_title( '<h3><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h3>' ); ?>
-                                    <div class="era <?php echo $field; ?>"></div>
+	$species = $genera->get_posts();
 
-                                    <p><?php echo ucwords( $field ); ?></p>
-                                </div>
-                                <div class="species-date">
-                                    <?php if (!empty($dateReal)) : ?>
-                                    <h4>
-                                        <time datetime="<?php echo $dateReal->format(DateTimeInterface::ISO8601); ?>"><?php echo $dateReal->format('Y'); ?></time>
-                                    </h4>
-                                    <?php endif; ?>
-                                    <?php if (!empty($author)) : ?>
-                                    <h5>by <?php echo $author; ?></h5>
-                                    <?php endif; ?>
-                                </div>
-                            </li>
-<?php // end of the loop.
-        }
+	foreach( $species as $post ) {
+		$field = get_post_meta( $post->ID, 'period', true );
+		$author = get_post_meta( $post->ID, 'genus_authority__author', true );
+		$date = get_post_meta( $post->ID, 'genus_authority__date', true );
+		$now = new DateTime("now");
+		if ($date) {
+			$dateFormatted = ( $now->modify('+1 day') >= new DateTime( $date ) ) ? new DateTime( $date ) : DateTime::createFromFormat( 'Y', $date );
+		} ?>
+				<li class="clearfix">	
+					<div class="species-name">
+						<?php the_title( '<h3><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h3>' ); ?>
+						<div class="era <?php echo $field; ?>"></div>
+
+						<p><?php echo ucwords( $field ); ?></p>
+					</div>
+					<div class="species-date">
+						<?php if (!empty($dateFormatted)) : ?>
+						<h4>
+							<time datetime="<?php echo $dateFormatted->format(DateTimeInterface::ISO8601); ?>"><?php echo $dateFormatted->format('Y'); ?></time>
+						</h4>
+						<?php endif; ?>
+						<?php if (!empty($author)) : ?>
+						<h5>by <?php echo $author; ?></h5>
+						<?php endif; ?>
+					</div>
+				</li>
+				<?php // end of the loop.
 	}
 }
-wp_reset_postdata(); ?>
+	$html = ob_get_clean();    
+    set_transient( $cache_key, $html, 24 * HOUR_IN_SECONDS );
+	
+	add_action( 'publish_genus',  function ( $ID, $post ) {
+		// A function to perform actions when a post is published.
+		delete_transient( $cache_key );
+	}, 10, 2 );
+}
+wp_reset_postdata();
+				$genera_html = get_transient( $cache_key ); echo $genera_html; ?>
 
                         </ul>
                     </div>
