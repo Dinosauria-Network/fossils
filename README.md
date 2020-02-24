@@ -2,7 +2,7 @@
 
 A WordPress theme designed for the Dinosauria Network. Inspired by fossils and the early days of the web, but built with modern code.
 
-Version: 1.2
+Version: 1.3
 
 ## Author:
 
@@ -10,7 +10,7 @@ Alexander Bell ( [@pixelasticity](http://twitter.com/pixelasticity) / [alexander
 
 ## Summary
 
-WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr, Picturefill and Normalize.css. Tested up to WordPress 4.0 RC1.
+WordPress Theme for use on the Dinosauria Network website. Uses HTML5 Boilerplate, Modernizr, Picturefill and Normalize.css. Tested up to WordPress 5.3.2 RC1.
 
 ## Usage
 
