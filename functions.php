@@ -200,9 +200,8 @@
      *
      * @since Fossils 1.0
      */
-    function firstresponse_posted_on()
-    {
-    printf(__('<div class="author vcard"><a class="url fn n" href="%6$s" title="%7$s" rel="author">%8$s</a></span><span class="sep">&bull;</div><span class="date"><span class="extra">Posted </span><a href="%1$s" title="%2$s at %3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" pubdate>%5$s</time></a></span>', 'firstresponse') , esc_url(get_permalink()) , esc_attr(get_the_date()) , esc_attr(get_the_time()) , esc_attr(get_the_date('c')) , esc_html(firstresponse_time_ago()) , esc_url(get_author_posts_url(get_the_author_meta('ID'))) , esc_attr(sprintf(__('View all posts by %s', 'firstresponse') , get_the_author())) , get_the_author());
+    function firstresponse_posted_on() {
+        printf(__('<div class="author vcard"><a class="url fn n" href="%6$s" title="%7$s" rel="author">%8$s</a></span><span class="sep">&bull;</div><span class="date"><span class="extra">Posted </span><a href="%1$s" title="%2$s at %3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" pubdate>%5$s</time></a></span>', 'firstresponse') , esc_url(get_permalink()) , esc_attr(get_the_date()) , esc_attr(get_the_time()) , esc_attr(get_the_date('c')) , esc_html(firstresponse_time_ago()) , esc_url(get_author_posts_url(get_the_author_meta('ID'))) , esc_attr(sprintf(__('View all posts by %s', 'firstresponse') , get_the_author())) , get_the_author());
     }
      
     endif;
