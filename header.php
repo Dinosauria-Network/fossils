@@ -71,7 +71,7 @@
         <?php _e( 'Skip to content', 'firstresponse' ); ?>
         </a></div>
       <div id="block">
-        <?php get_search_form( $echo ); ?>
+        <?php get_search_form( true ); ?>
         <h3 class="widget-title">
           <?php _e( '&sect; Sections', 'firstresponse' ); ?>
         </h3>
