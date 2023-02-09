@@ -12,9 +12,10 @@
         	<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>" >
 
 			<?php
-			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'original' );
-			$url = $thumb['0'];
-  			echo do_shortcode( '[rimg src="' . $url . '"]' );
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), false );
+            if ( $thumb ) {
+  			    echo do_shortcode( '[rimg src="' . $thumb[0] . '"]' );
+            }
 			?>
 		</a>
 	</div><!-- .post-image -->
