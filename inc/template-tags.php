@@ -588,144 +588,86 @@ function firstresponse_comment( $comment, $args, $depth ) {
 
 }
 
-
 endif; // ends check for firstresponse_comment()
 
 
-
-
-
 /*
-
-
  * Get image ID from URL
-
-
  *
-
-
  * @since Fossils 1.5
-
-
  */
-
 
 function get_attachment_id_from_src($url) {
-
-
   global $wpdb;
-
-
   $prefix = $wpdb->prefix;
-
-
   $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM " . $prefix . "posts" . " WHERE guid='%s';", $url ));
-
-
     return $attachment[0];
-
-
 }
-
-
 /*
-
-
  * Responsive shortcode
-
-
  *
-
-
  * @since Fossils 1.5
-
-
  */
 
-
 function responsive_image($atts){
-
-
   extract( shortcode_atts( array(
-
-
     'src' => '',
-
-
     'caption' => '',
-
-
   ), $atts ) );
 
-
   if($src != '')
-
-
   {
-
-
     $img_ID = get_attachment_id_from_src($src);
-
-
+  if($src != '') {
+    $img_ID = attachment_url_to_postid($src);
+    $alt = get_post_meta( $img_ID, '_wp_attachment_image_alt', true );
+    $caption = wp_get_attachment_caption( $img_ID );
+    $attachment_metadata = wp_get_attachment_metadata( $img_ID );
+    $credit = $attachment_metadata['image_meta']['credit'] ? $attachment_metadata['image_meta']['credit'] : $caption;
+    $desc = get_post( $img_ID )->post_content;
     $large = wp_get_attachment_image_src( $img_ID, 'resp-large' );
-
-
     $medium = wp_get_attachment_image_src( $img_ID, 'resp-medium' );
-
-
     $small = wp_get_attachment_image_src( $img_ID, 'resp-small' );
-
-
     $thumb = wp_get_attachment_image_src( $img_ID, 'thumbnail' );
 
-
- 
-
-
     $output = '<div class="responsive-image">';
-
-
     $output.= '  <div data-picture data-alt="' . $caption . '">';
-
-
     $output.= '    <div data-src="' . $thumb[0] . '"></div>';
-
-
     $output.= '    <div data-src="' . $small[0] . '" data-media="(min-width: 480px)"></div>';
-
-
     $output.= '    <div data-src="' . $medium[0] . '" data-media="(min-width: 640px)"></div>';
-
-
     $output.= '    <div data-src="' . $large[0] . '" data-media="(min-width: 960px)"></div>';
-
-
     $output.= '    <div data-src="' . $src . '" data-media="(min-width: 1280px)"></div>';
-
-
     $output.= '    <noscript>';
-
-
     $output.= '      <img src="' . $small[0] . '" alt="' . $caption . '">';
-
-
     $output.= '    </noscript>';
-
-
     $output.= '  </div>';
-
-
     if($caption != '') $output.= '  <p class="caption">' . $caption . '</p>';
+    $output = <<<HTML
+        <div class="responsive-image">
+            <div data-picture data-alt="$alt">
+                <div data-src="$thumb[0]"></div>
+                <div data-src="$small[0]" data-media="(min-width: 480px)"></div>
+                <div data-src="$medium[0]" data-media="(min-width: 640px)"></div>
+                <div data-src="$large[0]" data-media="(min-width: 960px)"></div>
+                <div data-src="$src" data-media="(min-width: 1280px)"></div>
+                <noscript>
+                    <img src="$src" alt="$alt">
+                </noscript>
+            </div>
+    HTML;
 
+    if ( $desc || $credit ) $output.= '    <figcaption class="caption">';
+    if ( $desc ) $output.= '    <p class="caption-text">Enlarge <span class="sep">/</span> ' . $desc . '</p>';
+    if ( $credit ) $output.= '  <p class="caption-credit">' . $credit . '</p>';
+    if ( $desc || $caption ) $output.= '    </figcaption>';
 
     $output.= '</div>';
 
-
+  } else {
+    $output = '';
   }
 
-
   return $output;
-
 
 }
 
