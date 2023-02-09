@@ -592,18 +592,6 @@ endif; // ends check for firstresponse_comment()
 
 
 /*
- * Get image ID from URL
- *
- * @since Fossils 1.5
- */
-
-function get_attachment_id_from_src($url) {
-  global $wpdb;
-  $prefix = $wpdb->prefix;
-  $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM " . $prefix . "posts" . " WHERE guid='%s';", $url ));
-    return $attachment[0];
-}
-/*
  * Responsive shortcode
  *
  * @since Fossils 1.5
@@ -615,9 +603,6 @@ function responsive_image($atts){
     'caption' => '',
   ), $atts ) );
 
-  if($src != '')
-  {
-    $img_ID = get_attachment_id_from_src($src);
   if($src != '') {
     $img_ID = attachment_url_to_postid($src);
     $alt = get_post_meta( $img_ID, '_wp_attachment_image_alt', true );
@@ -630,18 +615,6 @@ function responsive_image($atts){
     $small = wp_get_attachment_image_src( $img_ID, 'resp-small' );
     $thumb = wp_get_attachment_image_src( $img_ID, 'thumbnail' );
 
-    $output = '<div class="responsive-image">';
-    $output.= '  <div data-picture data-alt="' . $caption . '">';
-    $output.= '    <div data-src="' . $thumb[0] . '"></div>';
-    $output.= '    <div data-src="' . $small[0] . '" data-media="(min-width: 480px)"></div>';
-    $output.= '    <div data-src="' . $medium[0] . '" data-media="(min-width: 640px)"></div>';
-    $output.= '    <div data-src="' . $large[0] . '" data-media="(min-width: 960px)"></div>';
-    $output.= '    <div data-src="' . $src . '" data-media="(min-width: 1280px)"></div>';
-    $output.= '    <noscript>';
-    $output.= '      <img src="' . $small[0] . '" alt="' . $caption . '">';
-    $output.= '    </noscript>';
-    $output.= '  </div>';
-    if($caption != '') $output.= '  <p class="caption">' . $caption . '</p>';
     $output = <<<HTML
         <div class="responsive-image">
             <div data-picture data-alt="$alt">
