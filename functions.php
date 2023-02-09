@@ -74,9 +74,9 @@
     */
      
     if (function_exists('add_image_size')) {
-    add_image_size('resp-large', 768, 9999);
-    add_image_size('resp-medium', 480, 9999);
-    add_image_size('resp-small', 233, 233, true);
+        add_image_size('resp-large', 768, 9999);
+        add_image_size('resp-medium', 480, 9999);
+        add_image_size('resp-small', 233, 233, true);
     }
      
     /**
