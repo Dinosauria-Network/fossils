@@ -68,13 +68,9 @@
     endif; // firstresponse_setup
     add_action('after_setup_theme', 'firstresponse_setup');
     /*
-     
     * Custom image sizes for responsivity.
-     
     *
-     
     * @since Fossils 1.5
-     
     */
      
     if (function_exists('add_image_size')) {
