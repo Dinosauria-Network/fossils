@@ -109,15 +109,17 @@ function responsive_image($atts){
     $thumb  = wp_get_attachment_image_src( $img_ID, 'thumbnail' );
     $alt    = get_post_meta($img_ID, '_wp_attachment_image_alt', true);
  
-    $output.= '  <picture class="responsive-image">';
-    $output.= '    <!--[if IE 9]><video style="display: none;"><![endif]-->';
-    $output.= '    <source srcset="' . $src . '" media="(min-width: 1280px)">';
-    $output.= '    <source srcset="' . $large[0] . '" media="(min-width: 960px)">';
-    $output.= '    <source srcset="' . $medium[0] . '" media="(min-width: 640px)">';
-    $output.= '    <source srcset="' . $small[0] . '" media="(min-width: 480px)">';
-    $output.= '    <!--[if IE 9]></video><![endif]-->';
-    $output.= '    <img class="wp-post-image" srcset="' . $thumb[0] . '" alt="' . $alt . '">';
-    $output.= '  </picture>';
+    $output = <<<HTML
+      <picture class="responsive-image">
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+        <source srcset="$src" media="(min-width: 1280px)">
+        <source srcset="$large[0]" media="(min-width: 960px)">
+        <source srcset="$medium[0]" media="(min-width: 640px)">
+        <source srcset="$small[0]" media="(min-width: 480px)">
+        <!--[if IE 9]></video><![endif]-->
+        <img class="wp-post-image" srcset="$thumb[0]" alt="$alt">
+      </picture>
+    HTML;
     if($caption != '') $output.= '  <p class="caption">' . $caption . '</p>';
   }
   return $output;
