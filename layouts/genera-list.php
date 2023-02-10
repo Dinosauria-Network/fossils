@@ -16,7 +16,7 @@ get_template_part('templates/page', 'header'); ?>
 		<div id="top">
 			<a id="container" href="#listing">
 				<span class="texture"></span>
-				<h2><span class="h">Currently there are over </span><?php echo wp_count_posts('genus')->publish; ?><span class="h"> different species of dinosaurs that have been identified and named.</span></h2>
+				<h2><span class="sr-only">Currently there are over </span><?php echo wp_count_posts('genus')->publish; ?><span class="sr-only"> different species of dinosaurs that have been identified and named.</span></h2>
 			</a>
 		</div>
 		<div id="listing">
