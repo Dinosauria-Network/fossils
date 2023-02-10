@@ -97,12 +97,13 @@ function get_attachment_id_from_src($url) {
  * @since Fossils 1.5
  */
 function responsive_image($atts){
+  $post_id = get_queried_object_id();
   extract( shortcode_atts( array(
     'src' => '',
     'caption' => '',
   ), $atts ) );
   if($src != '') {
-    $img_ID = get_post_thumbnail_id( $post->ID );
+    $img_ID = get_post_thumbnail_id( $post_id );
     $large  = wp_get_attachment_image_src( $img_ID, 'large' );
     $medium = wp_get_attachment_image_src( $img_ID, 'medium' );
     $small  = wp_get_attachment_image_src( $img_ID, 'small' );
